@@ -1,0 +1,80 @@
+package logdel8;
+
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Fireball;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.inventory.meta.ItemMeta;
+
+
+@SuppressWarnings("unused")
+
+public class Kunai implements CommandExecutor{
+	//creazione oggetto nell'inventario
+	private Player p;
+	PlayerInventory inventory = p.getInventory();
+
+	@Override
+	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
+		// TODO Auto-generated method stub
+		
+		if(sender instanceof Player) {
+			if(cmd.getName().equalsIgnoreCase("kunai")) {
+				Player p = (Player) sender;
+				if(p.hasPermission("weapon.kunai")) {
+					
+					//effetto del comando
+					
+					//incantesimi e lore dell'oggetto
+					ItemStack kunai = new ItemStack(Material.ARROW); //Your item
+					kunai.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 3);
+					final ItemMeta itemMeta = kunai.getItemMeta();
+					itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+					kunai.setItemMeta(itemMeta);
+					
+					inventory.addItem(new ItemStack(kunai));
+					return true;
+					
+				}
+			}
+		} else {
+			sender.sendMessage("Non puoi eseguire questo comando da Console");
+		}
+	return true;
+		
+			
+		
+	}
+
+	
+	//texture dell'oggetto (da scegliere)
+	//mettere texture del kunai ad arrow.png nella texture pack
+	
+	
+	//rendere l'oggetto lanciabile
+	//se il player clicca col tasto destro con l'oggetto in mano, lancia l'oggetto
+	//se l'oggetto colpisce un'entità provoca ad essa un determinato danno
+	
+	
+	@EventHandler
+	public void onPlayerUse(PlayerInteractEvent event){
+		
+	    if(p.getInventory().getItemInMainHand().getType() == Material.ARROW){
+	    	
+	    	//N.B. mettere texture da kunai alla fireball
+	        Fireball fire = p.getWorld().spawn(event.getPlayer().getLocation(), Fireball.class);
+	        fire.setShooter(p);
+	    }
+	}
+	
+}

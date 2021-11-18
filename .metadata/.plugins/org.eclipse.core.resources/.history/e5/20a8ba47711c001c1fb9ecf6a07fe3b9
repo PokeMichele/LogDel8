@@ -1,0 +1,79 @@
+package logdel8;
+
+import java.io.File;
+import org.apache.commons.*; 
+import org.apache.commons.io.FileUtils;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.command.CommandExecutor;
+@SuppressWarnings("unused")
+
+public class Main extends JavaPlugin {
+	
+	public static Main plugin;
+	
+	File LogDir
+	
+	
+	
+	//Delete Logs
+	public void LogDelete() {
+		
+		// TODO Auto-generated method stub
+        
+		
+		//log file remove
+		System.out.println("Removing Logs....");
+        
+        try {
+        		FileUtils.cleanDirectory("/logs/"); 
+        		FileUtils.cleanDirectory(getDataFolder("/logs/"));
+        	}
+        	catch(InterruptedException ex1) {
+        		System.out.println(ex1);
+        	}
+          
+        
+        
+        
+        try {
+            Thread.sleep(600000);
+        } catch (InterruptedException ex) {
+            System.out.println(ex);
+        }
+       System.out.println("Logs Removed :D");
+       
+       LogDelete();
+       
+		
+	} 
+	
+	
+	
+	
+	
+	
+	public void onEnable() {
+		plugin = this;
+		System.out.println("LogDel8 is now Enabled");
+		saveDefaultConfig();
+		
+		this.getClassLoader();
+		
+		LogDelete();
+		
+		
+	}
+	
+	public void onDisable() {
+		System.out.println("LogDel8 is now Disabled");
+	}
+
+	public static Main getInstance() {
+		return plugin;
+		
+	}
+
+	
+}

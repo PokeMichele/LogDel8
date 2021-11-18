@@ -1,0 +1,45 @@
+package logdel8;
+
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.command.CommandExecutor;
+@SuppressWarnings("unused")
+
+public class Main extends JavaPlugin{
+	
+	public static Main plugin;
+	public static Data data;
+	
+	
+	public void onEnable() {
+		plugin = this;
+		System.out.println("NarutoPM è stato abilitato");
+		Bukkit.getPluginManager().registerEvents(new PluginListener(), this);
+		getCommand("checo").setExecutor(new Executor());
+		getCommand("chakra").setExecutor(new Executor());
+		getCommand("chtransfer").setExecutor(new Executor());
+		getCommand("kunai").setExecutor(new Executor());
+		getCommand("substitution").setExecutor(new Executor());
+		saveDefaultConfig();
+		data = new Data();
+	}
+	
+	public void onDisable() {
+		System.out.println("NarutoPM è stato disabilitato");
+	}
+
+	public static Main getInstance() {
+		return plugin;
+	}
+	
+	public static Data getData() {
+		return data;
+	}
+	
+	@SuppressWarnings("static-access")
+	public String getValue(Player p) {
+		return this.data.getString("Data."+getName());
+	}
+	
+}

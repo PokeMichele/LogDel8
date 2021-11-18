@@ -1,0 +1,5 @@
+INDEX VERSION 1.131+C:\Users\Miche\Downloads\LogDel8\.metadata\.plugins\org.eclipse.jdt.core
+2375051947.index
+2858616456.index
+258218367.index
+1071196072.index

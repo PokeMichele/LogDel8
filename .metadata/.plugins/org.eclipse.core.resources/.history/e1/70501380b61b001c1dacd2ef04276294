@@ -1,0 +1,129 @@
+package logdel8;
+
+import org.apache.commons.lang.math.NumberUtils;
+import org.bukkit.Bukkit;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.entity.Player;
+
+public class Executor implements CommandExecutor {
+	
+	public boolean onCommand(CommandSender sender, org.bukkit.command.Command cmd, String commandLabel, String[] args) {
+		
+		if (sender instanceof ConsoleCommandSender || sender instanceof Player) {
+			
+			if (cmd.getName().equalsIgnoreCase("chakraamount")) {
+				if (!(sender instanceof Player))
+					return true;
+				if (sender.hasPermission("chakra.chakraamount")) {
+					
+					chakra chakraamount = new chakra((Player)sender, 0);
+					sender.sendMessage("Hai"+chakraamount.getBalance()+"chakra");
+					return true;
+				} else {
+					sender.sendMessage("Non hai il permesso di farlo");
+					return true;
+				}
+			}
+		
+		if (cmd.getName().equalsIgnoreCase("checo")) {
+			if (args.length == 3) {
+				Player p = Bukkit.getServer().getPlayer(args[0]);
+				if (p != null) {
+					if (NumberUtils.isNumber(args[2])) {
+						chakra chakraamount = new chakra(p, Double.parseDouble(args[2]));
+						if (args[1].equalsIgnoreCase("set")) {
+							if (sender.hasPermission("chakra.checo.set")) {
+								chakraamount.setBalance();
+								sender.sendMessage("Fatto");
+								return true;
+							} else {
+								sender.sendMessage("Non hai il permesso di farlo");
+							}
+							
+						} else if (args[1].equalsIgnoreCase("give")) {
+							if (sender.hasPermission("chakra.checo.give")) {
+								
+								chakraamount.addBalance();
+								sender.sendMessage("Fatto");
+								
+							} else {
+								sender.sendMessage("Non hai il permesso di farlo");
+								return true;
+							}
+						} else if (args[1].equalsIgnoreCase("take")) {
+							if (sender.hasPermission("chakra.checo.take")) {
+								
+								chakraamount.takeBalance();
+								sender.sendMessage("Fatto");
+							} else {
+								sender.sendMessage("Non hai il permesso di farlo");
+								return true; 
+							}
+						} else {
+							
+							sender.sendMessage("/chakra <Player> set|give|take <chakra>");
+						} 
+					} else {
+						sender.sendMessage("Args Sconosciuti");
+						return true;
+					}
+					
+				} else {
+					sender.sendMessage("Player non trovato");
+					return true;
+				}
+			} else {
+				sender.sendMessage("/chakra <Player> set|give|take <chakra>");
+				return true;
+			}
+		}
+		
+		if (cmd.getName().equalsIgnoreCase("chtransfer")) {
+			if (!(sender instanceof Player))
+				return true;
+			if (sender.hasPermission("chakra.checo.chtransfer")) {
+				if (args.length == 2) {
+					Player p = Bukkit.getServer().getPlayer(args[0]);
+					if (p != null) {
+						if (NumberUtils.isNumber(args[1])) {
+							
+							chakra chakraamount = new chakra((Player)sender, Double.parseDouble(args[1]));
+							if (chakraamount.detractable()) {
+								chakra chakraamountTarget = new chakra(p, Double.parseDouble(args[1]));
+								chakraamount.addBalance();
+								chakraamountTarget.takeBalance();
+								sender.sendMessage("Adesso hai"+chakraamount.getBalance()+"di Chakra");
+								p.sendMessage("Adesso hai"+chakraamountTarget.getBalance()+"di Chakra");
+								return true;
+								
+							} else {
+								sender.sendMessage("Non hai Chakra sufficiente per farlo");
+								return true;
+							} 
+							
+						} else {
+							sender.sendMessage("Args Sconosciuti");
+							return true;
+					}
+				} else {
+					sender.sendMessage("Player non trovato");
+					return true;
+			}
+		} else {
+			sender.sendMessage("/chtransfer <Player> <Chakra>");
+			return true;}
+		
+		
+		
+			}	
+	
+		}
+		}
+		return true;
+		}
+	
+	}	
+
+

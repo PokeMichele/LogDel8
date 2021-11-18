@@ -1,0 +1,16 @@
+package naaruto;
+
+import org.bukkit.event.Listener;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.player.PlayerJoinEvent;
+
+public class PluginListener implements Listener {
+	
+	@EventHandler
+	public void onJoin(PlayerJoinEvent e) {
+		
+		if(!Main.getData().hasBalance(e.getPlayer()))
+			Main.getData().saveData(e.getPlayer(), Double.parseDouble(Main.getInstance().getConfig().getString("settings.start-value")));
+	}
+
+}

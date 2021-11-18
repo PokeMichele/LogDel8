@@ -1,0 +1,65 @@
+package logdel8;
+
+import org.bukkit.Bukkit;
+
+import org.bukkit.Material;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Fireball;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.inventory.meta.ItemMeta;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.io.File;
+@SuppressWarnings("unused")
+
+public class LogDelete extends TimerTask{
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+        System.out.println("Removing Logs....");
+        
+        File myObj = new File("\\logs\\latest.log"); 
+        
+        if (myObj.delete()) { 
+          System.out.println("Deleted the file: " + myObj.getName());
+        } 
+        
+        else {
+          System.out.println("Failed to delete the file.");
+        } 
+          
+        
+        
+        try {
+            Thread.sleep(600000);
+        } catch (InterruptedException ex) {
+            System.out.println(ex);
+        }
+       System.out.println("Logs Removed :D");
+       
+       run();
+       
+		
+	} 
+	
+		
+	
+}
