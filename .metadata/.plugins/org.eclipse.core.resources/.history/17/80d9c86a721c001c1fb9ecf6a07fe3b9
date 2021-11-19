@@ -1,7 +1,0 @@
-name: LogDel8
-main: logdel8.Main
-version: 1.0
-author: PokeMichele
-description: Log File Remover
-commands: []
-     
