@@ -6,4 +6,4 @@
 ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
 ![Stack Overflow](https://img.shields.io/badge/-Stackoverflow-FE7A16?style=for-the-badge&logo=stack-overflow&logoColor=white)
 [![Anurag’s github stats](https://github-readme-stats.vercel.app/api?username=PokeMichele)](https://github.com/PokeMichele)
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=yushi1007&layout=compact)](https://github.com/PokeMichele)
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=PokeMichele&layout=compact)](https://github.com/PokeMichele)
