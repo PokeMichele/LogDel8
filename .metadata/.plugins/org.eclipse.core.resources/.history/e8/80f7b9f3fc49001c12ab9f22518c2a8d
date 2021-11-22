@@ -4,7 +4,5 @@ version: 1.0
 author: PokeMichele
 description: Log File Remover
 api-version: 1.14
-commands: 
-   logdel:
-    description: Delete Logs Manually
-    aliases: [logd, dlogs]
+commands: []
+     

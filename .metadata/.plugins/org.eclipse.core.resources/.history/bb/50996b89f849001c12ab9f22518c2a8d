@@ -1,7 +1,6 @@
 package logdel8;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import org.apache.commons.*; 
 import org.apache.commons.io.FileUtils;
@@ -26,6 +25,7 @@ public class Main extends JavaPlugin {
 	File LogDir = new File("/logs/");
 	
 	
+	
 	//Delete Logs Method
 	public void LogDelete() {
 		
@@ -44,7 +44,9 @@ public class Main extends JavaPlugin {
 				e.printStackTrace();
 			}
 		}
+		
 
+        
         //wait 10 minutes or x minutes
         try {
             Thread.sleep(Main.getInstance().getConfig().getInt("settings.time-between-log-removing-in-ms"));
@@ -61,7 +63,8 @@ public class Main extends JavaPlugin {
 	
 	
 	
-
+	
+	
 	//OnEnable
 	public void onEnable() {
 		plugin = this;
@@ -72,18 +75,7 @@ public class Main extends JavaPlugin {
 		
 		this.getClassLoader();
 		
-		//Setting permissions to the file
-	    LogDir.setReadable(true); //read
-	    LogDir.setWritable(true); //write
-	    LogDir.setExecutable(true); //execute
-		
 		//delete Logs
-		//wait 10 minutes or x minutes
-        try {
-            Thread.sleep(Main.getInstance().getConfig().getInt("settings.time-between-log-removing-in-ms"));
-        } catch (InterruptedException ex) {
-            System.out.println(ex);
-        }
 		LogDelete();
 		
 		

@@ -50,6 +50,7 @@
 		<item key="JarManifestWizardPage.SEAL_JAR" value="false"/>
 		<list key="JarPackageWizardPage.DESTINATION_NAMES_ID">
 			<item value="C:\Users\Miche\Downloads\LogDel8.jar"/>
+			<item value="C:\Users\Miche\Desktop\LogDel8.jar"/>
 			<item value="C:\Users\Miche\Downloads\NarutoPM.jar"/>
 		</list>
 	</section>
