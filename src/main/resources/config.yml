@@ -1,0 +1,2 @@
+settings:
+   time-between-log-removing-in-ms: 600000 # the default time is 600000ms (10 minutes)
