@@ -5,5 +5,11 @@
 ![Stack Overflow](https://img.shields.io/badge/-Stackoverflow-FE7A16?style=for-the-badge&logo=stack-overflow&logoColor=white)
 ![Environment-Server](https://img.shields.io/badge/environment-server-orangered?style=flat-square)
 [![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)
+
+## Commands
+- /logdel
+  aliases: logd, dlogs
+  description: removes all log files
+
 [![Anurag’s github stats](https://github-readme-stats.vercel.app/api?username=PokeMichele)](https://github.com/PokeMichele)
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=PokeMichele&layout=compact)](https://github.com/PokeMichele)
