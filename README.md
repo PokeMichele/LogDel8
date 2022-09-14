@@ -8,8 +8,10 @@
 
 ## Commands
 - /logdel
-aliases: logd, dlogs
-description: removes all log files
+
+  aliases: logd, dlogs
+  
+  description: removes all log files
 
 [![Anurag’s github stats](https://github-readme-stats.vercel.app/api?username=PokeMichele)](https://github.com/PokeMichele)
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=PokeMichele&layout=compact)](https://github.com/PokeMichele)
