@@ -15,7 +15,7 @@
 
 ## Build
  This plugin has been built using the following dependencies:
- - [Apache Commons-IO](https://commons.apache.org/proper/commons-io/ "Apache Commons-IO")
- - [Quartz](http://www.quartz-scheduler.org/ "Quartz")
+ - [Apache Commons-IO](https://commons.apache.org/proper/commons-io/ "Apache Commons-IO"), distributed under [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0.txt "Apache 2.0 License")
+ - [Quartz](http://www.quartz-scheduler.org/ "Quartz"), distributed under [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0.txt "Apache 2.0 License")
 
 [![Anurag’s github stats](https://github-readme-stats.vercel.app/api?username=PokeMichele)](https://github.com/PokeMichele)
