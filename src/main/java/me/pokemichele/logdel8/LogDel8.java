@@ -37,7 +37,7 @@ public class LogDel8 extends JavaPlugin {
 		getCommand("logdel").setExecutor(new LogDelCommand());
 
 		
-		//crea cartella del config.yml
+		//Load config.yml
 		saveDefaultConfig();
 		
 		//Setting permissions to the file (+rwx)
@@ -45,16 +45,20 @@ public class LogDel8 extends JavaPlugin {
 	    LogDir.setWritable(true); //write
 	    LogDir.setExecutable(true); //execute
 
-		try {
-			enableAutoRemover();
-		} catch (SchedulerException e) {
-			throw new RuntimeException(e);
+		if (plugin.getConfig().getBoolean("settings.enable-auto-remover") == true) {
+			try {
+				enableAutoRemover();
+			} catch (SchedulerException e) {
+				throw new RuntimeException(e);
+			}
+		} else {
+			return;
 		}
 
 	}
 
 
-
+	//AutoRemover
 	public static void enableAutoRemover( ) throws SchedulerException {
 		//delete Logs
 		//wait 10 minutes
@@ -67,7 +71,7 @@ public class LogDel8 extends JavaPlugin {
 
 		SimpleTrigger trigger = newTrigger().withIdentity("trigger1")
 				.startNow()
-				.withSchedule(simpleSchedule().withIntervalInMinutes(10).repeatForever())
+				.withSchedule(simpleSchedule().withIntervalInMinutes(plugin.getConfig().getInt("settings.time-between-log-removing-in-minutes")).repeatForever())
 				.build();
 		scheduler.scheduleJob(job, trigger);
 	}
