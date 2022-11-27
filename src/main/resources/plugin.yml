@@ -3,7 +3,7 @@ name: LogDel8
 version: 1.0
 author: PokeMichele
 description: Log File Remover
-api-version: 1.16
+api-version: 1.18
 commands: 
    logdel:
     description: Delete Logs Manually

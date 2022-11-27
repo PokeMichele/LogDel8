@@ -1,12 +1,15 @@
 package me.pokemichele.logdel8;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.Timer;
-import java.util.TimerTask;
 
-import org.apache.commons.io.FileUtils;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.quartz.*;
+import org.quartz.impl.StdSchedulerFactory;
+
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
+import static org.quartz.TriggerBuilder.newTrigger;
+
 @SuppressWarnings("unused")
 
 public class LogDel8 extends JavaPlugin {
@@ -25,18 +28,8 @@ public class LogDel8 extends JavaPlugin {
 
 	File LogDir = new File(MainDir+"/logs/");
 
-	public void enableAutoRemover(){
-		//delete Logs
-		//wait 10 minutes or x minutes
-
-		//
 
 
-		//repeat
-		enableAutoRemover();
-	}
-
-	
 	//OnEnable
 	public void onEnable() {
 		plugin = this;
@@ -47,15 +40,46 @@ public class LogDel8 extends JavaPlugin {
 		//crea cartella del config.yml
 		saveDefaultConfig();
 		
-		//Setting permissions to the file
+		//Setting permissions to the file (+rwx)
 	    LogDir.setReadable(true); //read
 	    LogDir.setWritable(true); //write
 	    LogDir.setExecutable(true); //execute
 
-		//enableAutoRemover();
-
+		try {
+			enableAutoRemover();
+		} catch (SchedulerException e) {
+			throw new RuntimeException(e);
+		}
 
 	}
+
+
+
+	public static void enableAutoRemover( ) throws SchedulerException {
+		//delete Logs
+		//wait 10 minutes
+		Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+		scheduler.start();
+
+		JobDetail job = newJob(AutoRemover.class)
+				.withIdentity("auto-remover")
+				.build();
+
+		SimpleTrigger trigger = newTrigger().withIdentity("trigger1")
+				.startNow()
+				.withSchedule(simpleSchedule().withIntervalInMinutes(10).repeatForever())
+				.build();
+		scheduler.scheduleJob(job, trigger);
+	}
+	public static class AutoRemover implements Job {
+		@Override
+		public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
+			LogDelCommand.LogDelete();
+		}
+
+	}
+
+
 	
 	//OnDisable
 	public void onDisable() {
