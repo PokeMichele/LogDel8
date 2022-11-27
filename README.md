@@ -14,7 +14,7 @@
   description: removes all log files
 
 ## Build
-- This plugin has been built using the following dependencies:
+ This plugin has been built using the following dependencies:
  - [Apache Commons-IO](https://commons.apache.org/proper/commons-io/ "Apache Commons-IO")
  - [Quartz](http://www.quartz-scheduler.org/ "Quartz")
 
