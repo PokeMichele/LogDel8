@@ -9,10 +9,12 @@ import org.bukkit.entity.Player;
 import java.io.File;
 import java.io.IOException;
 
+import static me.pokemichele.logdel8.LogDel8.plugin;
+
 public class LogDelCommand implements CommandExecutor{
 
 	//define directory
-	static String MainDir = System.getProperty("user.dir");
+	static String MainDir = plugin.getServer().getWorldContainer().getAbsolutePath();
 	static File LogDir = new File(MainDir+"/logs/");
 
 	//Delete Logs Method

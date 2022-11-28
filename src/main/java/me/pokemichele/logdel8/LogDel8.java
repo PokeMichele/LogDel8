@@ -3,13 +3,7 @@ package me.pokemichele.logdel8;
 import java.io.File;
 
 import org.bukkit.plugin.java.JavaPlugin;
-import org.quartz.*;
-import org.quartz.impl.StdSchedulerFactory;
-
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
-import static org.quartz.TriggerBuilder.newTrigger;
-
+import org.bukkit.scheduler.BukkitScheduler;
 @SuppressWarnings("unused")
 
 public class LogDel8 extends JavaPlugin {
@@ -48,7 +42,7 @@ public class LogDel8 extends JavaPlugin {
 		if (plugin.getConfig().getBoolean("settings.enable-auto-remover") == true) {
 			try {
 				enableAutoRemover();
-			} catch (SchedulerException e) {
+			} catch (Exception e) {
 				throw new RuntimeException(e);
 			}
 		} else {
@@ -57,34 +51,19 @@ public class LogDel8 extends JavaPlugin {
 
 	}
 
-
 	//AutoRemover
-	public static void enableAutoRemover( ) throws SchedulerException {
-		//delete Logs
-		//wait 10 minutes
-		Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
-		scheduler.start();
-
-		JobDetail job = newJob(AutoRemover.class)
-				.withIdentity("auto-remover")
-				.build();
-
-		SimpleTrigger trigger = newTrigger().withIdentity("trigger1")
-				.startNow()
-				.withSchedule(simpleSchedule().withIntervalInMinutes(plugin.getConfig().getInt("settings.time-between-log-removing-in-minutes")).repeatForever())
-				.build();
-		scheduler.scheduleJob(job, trigger);
-	}
-	public static class AutoRemover implements Job {
-		@Override
-		public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-			LogDelCommand.LogDelete();
-		}
+	public void enableAutoRemover(){
+		BukkitScheduler scheduler = getServer().getScheduler();
+		scheduler.scheduleSyncRepeatingTask(this, new Runnable() {
+			@Override
+			public void run() {
+				LogDelCommand.LogDelete();
+			}
+		}, 0L, plugin.getConfig().getInt("settings.time-between-log-removing-in-minutes")*1200L);
 
 	}
 
 
-	
 	//OnDisable
 	public void onDisable() {
 		System.out.println("LogDel8 is now Disabled");
